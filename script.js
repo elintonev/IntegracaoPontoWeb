@@ -38,11 +38,11 @@ let BaseList = async() => {
                 return newList;
             })
             console.log(aux)
-            for (let i = 0; i < aux.lenght; i++) {
+            for (let i = 0; i < aux.length; i++) {
                 let opts = document.createElement('option')
-                opts.value = aux.identificador[i]
-                opts.text = aux.nome[i]
-                select.add(opts, select.options[i])
+                opts.value = aux[i].identificador
+                opts.text = aux[i].nome
+                select.add(opts)
             }
         }
     };
