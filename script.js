@@ -25,10 +25,24 @@ let BaseList = async() => {
     xhr.setRequestHeader("Authorization", `Bearer ${token}`);
 
     xhr.onreadystatechange = () => {
+        let select = document.getElementById('BaseList')
+
         if (xhr.readyState === 4) {
             let teste = JSON.parse(xhr.responseText)
-            for (let dataBases of teste) {
-                console.log(`id = ${dataBases.id} ---> nome = ${dataBases.nome} ---> identificador = ${dataBases.identificador}`)
+            let aux = teste.map(list => {
+                const newList = {
+                    id: list.id,
+                    nome: list.nome,
+                    identificador: list.identificador
+                }
+                return newList;
+            })
+            console.log(aux)
+            for (let i = 0; i < aux.lenght; i++) {
+                let opts = document.createElement('option')
+                opts.value = aux.identificador[i]
+                opts.text = aux.nome[i]
+                select.add(opts, select.options[i])
             }
         }
     };
