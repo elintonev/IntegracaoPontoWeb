@@ -1,28 +1,41 @@
 let button = document.getElementById('ButtonSoliciteToken')
-let userName = document.getElementById('UserName').value
-let password = document.getElementById('Password').value
-let accessToken = document.getElementById('ReturnToken')
-const grant = 'grant_type=password'
-const client = 3
-    //var xhr = new XMLHttpRequest();
-
-//xhr.open('POST', 'https://autenticador.secullum.com.br/Token')
-//request.setRequestHeader('Content-Type', 'application/json')
+let baselist = document.getElementById('ButtonSoliciteBaseList')
+var token = null
 
 let AccessToken = async() => {
-    /*const data = {
-        grant_type: 'password',
-        username: `${userName}`,
-        password: `${password}`,
-        client_id: `${client}`
-    };*/
+    const grant = 'grant_type=password'
+    const client = 3
+    let userName = document.getElementById('UserName').value
+    let password = document.getElementById('Password').value
+    let accessToken = document.getElementById('txtTokenReturn')
 
-    /*const retorno = await fetch(`https://autenticador.secullum.com.br/Token?${grant}&username=${userName}&password=${password}&client_id=${client}`, {
-        method: "POST",
-    }).then((response) => response.json())
+    const retorno = await fetch(`https://autenticador.secullum.com.br/Token?${grant}&username=${userName}&password=${password}&client_id=${client}`, { method: "POST" }).then((response) => response.json())
 
-    accessToken.innerHTML.value = `${retorno.access_token}`*/
-    console.log(`${userName} e a senha é: ${password}`)
+    token = `${retorno.access_token}`
+    accessToken.innerHTML = token
 }
 
+let BaseList = async() => {
+    var url = `https://autenticador.secullum.com.br/ContasSecullumExterno/ListarBancos`;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            let teste = JSON.parse(xhr.responseText)
+            for (let dataBases of teste) {
+                console.log(`id = ${dataBases.id} ---> nome = ${dataBases.nome} ---> identificador = ${dataBases.identificador}`)
+            }
+        }
+    };
+
+    xhr.send();
+}
+
+
 button.addEventListener('click', AccessToken)
+baselist.addEventListener('click', BaseList)
