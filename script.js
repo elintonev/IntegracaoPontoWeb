@@ -61,6 +61,7 @@ let ReqLiberated = () => {
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Authorization", `Bearer ${token}`);
     xhr.setRequestHeader('secullumbancoselecionado', `${databaseID}`)
+
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
             alert('Banco Selecionado com sucesso')
@@ -73,8 +74,20 @@ let AllRegisterFiltered = async() => {
     let firstDate = document.getElementById('firstDate').value
     let lastDate = document.getElementById('lastDate').value
 
+    let url = `https://pontowebintegracaoexterna.secullum.com.br/IntegracaoExterna/Batidas?dataInicio=${firstDate}&dataFim=${lastDate}`
 
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
 
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            let teste = JSON.parse(xhr.responseText)
+            console.log(teste)
+        }
+    }
+    xhr.send();
 }
 
 
