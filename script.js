@@ -1,5 +1,7 @@
 let button = document.getElementById('ButtonSoliciteToken')
 let baselist = document.getElementById('ButtonSoliciteBaseList')
+let selectDataBase = document.getElementById('BaseList')
+let registerList = document.getElementById('registerList')
 var token = null
 
 let AccessToken = async() => {
@@ -26,7 +28,6 @@ let BaseList = async() => {
 
     xhr.onreadystatechange = () => {
         let select = document.getElementById('BaseList')
-
         if (xhr.readyState === 4) {
             let teste = JSON.parse(xhr.responseText)
             let aux = teste.map(list => {
@@ -37,7 +38,6 @@ let BaseList = async() => {
                 }
                 return newList;
             })
-            console.log(aux)
             for (let i = 0; i < aux.length; i++) {
                 let opts = document.createElement('option')
                 opts.value = aux[i].identificador
@@ -50,6 +50,36 @@ let BaseList = async() => {
     xhr.send();
 }
 
+let ReqLiberated = () => {
+    let databaseID = document.getElementById('BaseList').value
+
+    var url = `https://autenticador.secullum.com.br/ContasSecullumExterno/`;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+    xhr.setRequestHeader('secullumbancoselecionado', `${databaseID}`)
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            alert('Banco Selecionado com sucesso')
+        }
+    }
+    xhr.send();
+}
+
+let AllRegisterFiltered = async() => {
+    let firstDate = document.getElementById('firstDate').value
+    let lastDate = document.getElementById('lastDate').value
+
+
+
+}
+
+
 
 button.addEventListener('click', AccessToken)
 baselist.addEventListener('click', BaseList)
+registerList.addEventListener('click', AllRegisterFiltered)
+selectDataBase.addEventListener('change', ReqLiberated)
