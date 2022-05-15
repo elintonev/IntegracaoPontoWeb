@@ -52,6 +52,7 @@ let BaseList = async() => {
 
 let ReqLiberated = () => {
     let databaseID = document.getElementById('BaseList').value
+    let newDataBaseId = databaseID.replaceAll("-", '')
 
     var url = `https://autenticador.secullum.com.br/ContasSecullumExterno/`;
 
@@ -60,7 +61,7 @@ let ReqLiberated = () => {
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Authorization", `Bearer ${token}`);
-    xhr.setRequestHeader('secullumbancoselecionado', `${databaseID}`)
+    xhr.setRequestHeader('secullumbancoselecionado', `${newDataBaseId}`)
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {

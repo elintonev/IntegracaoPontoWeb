@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;700&display=swap" rel="stylesheet">
     <title>Integração Externa Ponto Web</title>
 </head>
 
@@ -15,22 +18,24 @@
     </header>
     <main>
         <section class="TokenSection">
-            <label for="UserName">Usuário</label>
-            <input id="UserName" name="UserName" type="text">
-            <label for="Password">Senha</label>
-            <input id="Password" name="Password" type="password">
-            <label for="ReturnToken">Token de Acesso</label>
-            <textarea id="txtTokenReturn" name="ReturnToken" type="text"></textarea>
+            <div class="div-dados-token">
+                <label for="UserName">Usuário:</label>
+                <input id="UserName" name="UserName" type="text" placeholder="Digite seu e-mail">
+                <label for="Password">Senha:</label>
+                <input id="Password" name="Password" type="password" placeholder="Digite sua senha">
+                <label id="labelToken" for="ReturnToken">Token de Acesso:</label>
+                <input id="txtTokenReturn" name="ReturnToken" type="text"></input>
+            </div>
 
             <button id="ButtonSoliciteToken" type="button">Solicitar Token</button>
         </section>
 
         <section>
-            <br>
-            <br>
             <button id="ButtonSoliciteBaseList" type="button">Listar Bancos de dados</button>
-            <br>
-            <select name="BaseList" id="BaseList">Selecione o banco de dados</select>
+            <select name="BaseList" id="BaseList">
+                <option value="" disabled selected>Selecione o banco de dados</option>
+            </select>
+
         </section>
 
         <section>
@@ -41,6 +46,8 @@
 
             <button id="registerList" type="button">Listar Batidas</button>
         </section>
+        <div id="listOfRegister"></div>
+
     </main>
 </body>
 <script src=".\script.js"></script>
