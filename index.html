@@ -12,7 +12,7 @@
     <title>Integração Externa Ponto Web</title>
 </head>
 
-<body>
+<body id="body">
     <header>
         <h1>Interface Integração Externa Ponto Web</h1>
     </header>
@@ -24,7 +24,7 @@
                 <label for="Password">Senha:</label>
                 <input id="Password" name="Password" type="password" placeholder="Digite sua senha">
                 <label id="labelToken" for="ReturnToken">Token de Acesso:</label>
-                <input id="txtTokenReturn" name="ReturnToken" type="text"></input>
+                <input id="txtTokenReturn" name="ReturnToken" type="text" readonly></input>
             </div>
 
             <button id="ButtonSoliciteToken" type="button">Solicitar Token</button>
@@ -38,15 +38,46 @@
 
         </section>
 
-        <section>
-            <label for="firstDate">Data Início</label>
+        <section id="section-date">
+            <label for="firstDate">Data Início:</label>
             <input id="firstDate" type="date">
-            <label for="firstDate">Data Fim</label>
+            <label for="firstDate">Data Fim:</label>
             <input id="lastDate" type="date">
 
             <button id="registerList" type="button">Listar Batidas</button>
         </section>
-        <div id="listOfRegister"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Entrada 1</th>
+                    <th>Saída 1</th>
+                    <th>Entrada 2</th>
+                    <th>Saída 2</th>
+                    <th>Entrada 3</th>
+                    <th>Saída 3</th>
+                    <th>Entrada 4</th>
+                    <th>Saída 4</th>
+                    <th>Entrada 5</th>
+                    <th>Saída 5</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                    <td style="min-width: 90px;"></td>
+                </tr>
+            </tbody>
+        </table>
 
     </main>
 </body>

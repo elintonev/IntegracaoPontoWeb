@@ -11,7 +11,8 @@ h1 {
     font-size: 75px;
 }
 
-.div-dados-token input {
+.div-dados-token input,
+#section-date input {
     border: 4px solid #000;
     border-radius: 10px;
     padding-left: 5px;
@@ -20,17 +21,14 @@ h1 {
 }
 
 .div-dados-token label,
-#labelToken {
+#labelToken,
+#section-date label {
     font-size: 25px;
     margin: 55px;
 }
 
 .div-dados-token input::placeholder {
     padding-left: 10px;
-}
-
-textarea {
-    margin-right: 0.5%;
 }
 
 #ButtonSoliciteToken {
@@ -40,6 +38,28 @@ textarea {
     font-size: 25px;
 }
 
-#ButtonSoliciteToken:hover {
+#ButtonSoliciteBaseList,
+#BaseList,
+#registerList {
+    margin: 15px;
+    width: 45%;
+    font-size: 25px;
+}
+
+#BaseList {
+    padding-left: 15px;
+}
+
+#ButtonSoliciteBaseList:hover,
+#ButtonSoliciteToken:hover,
+#registerList:hover {
     cursor: pointer;
+    background-image: linear-gradient(to right, #fff 15%, #5AC9E4);
+    border-radius: 10px;
+}
+
+#BaseList:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to right, #5AC9E4, #fff);
+    border-radius: 10px;
 }
