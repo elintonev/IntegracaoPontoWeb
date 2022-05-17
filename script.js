@@ -4,8 +4,6 @@ let selectDataBase = document.getElementById('BaseList')
 let registerList = document.getElementById('registerList')
 var token = null
 
-let texto = '';
-
 let AccessToken = async() => {
     const grant = 'grant_type=password'
     const client = 3

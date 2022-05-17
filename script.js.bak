@@ -4,6 +4,8 @@ let selectDataBase = document.getElementById('BaseList')
 let registerList = document.getElementById('registerList')
 var token = null
 
+let texto = '';
+
 let AccessToken = async() => {
     const grant = 'grant_type=password'
     const client = 3
@@ -108,16 +110,21 @@ let AllRegisterFiltered = async() => {
 				testeFilter.saida1 !== null || testeFilter.saida2 !== null || testeFilter.saida3 !== null || testeFilter.saida4 !== null || testeFilter.saida5 !== null
 			} )
 			console.log(arq(aux))
-            downloadFiles(JSON.stringify(arq(aux)), `${fileName}`, 'txt')
+			
+			
+			
+			
+            downloadFiles(arq(aux), `${fileName}`, 'txt')
         }
     }
     xhr.send();
 }
 
 let arq = (arquivo) =>{
-	let result = []
-	for (let obj of arquivo){
-		result.push(`${obj.data} ---> ${obj.entrada1}  ${obj.saida1} ---> ${obj.nfolha}`)
+	let result = ''
+	for (let obj of arquivo){		
+		result += `${obj.data} ---> ${obj.entrada1}  ${obj.saida1} ---> ${obj.nfolha}`
+		result += `\n`
 	}
 	return result
 }
