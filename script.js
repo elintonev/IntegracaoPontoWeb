@@ -4,6 +4,8 @@ let selectDataBase = document.getElementById('BaseList')
 let registerList = document.getElementById('registerList')
 var token = null
 
+let texto = '';
+
 let AccessToken = async() => {
     const grant = 'grant_type=password'
     const client = 3
@@ -107,10 +109,24 @@ let AllRegisterFiltered = async() => {
 				return testeFilter.entrada1 !== null || testeFilter.entrada2 !== null || testeFilter.entrada3 !== null || testeFilter.entrada4 !== null || testeFilter.entrada5 !== null || 
 				testeFilter.saida1 !== null || testeFilter.saida2 !== null || testeFilter.saida3 !== null || testeFilter.saida4 !== null || testeFilter.saida5 !== null
 			} )
-            downloadFiles(JSON.stringify(aux), `${fileName}`, 'PDF')
+			console.log(arq(aux))
+			
+			
+			
+			
+            downloadFiles(arq(aux), `${fileName}`, 'txt')
         }
     }
     xhr.send();
+}
+
+let arq = (arquivo) =>{
+	let result = ''
+	for (let obj of arquivo){		
+		result += `${obj.data} ---> ${obj.entrada1}  ${obj.saida1} ---> ${obj.nfolha}`
+		result += `\n`
+	}
+	return result
 }
 
 function downloadFiles(data, file_name, file_type) {
