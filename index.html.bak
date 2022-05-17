@@ -44,7 +44,7 @@
             <label for="firstDate">Data Fim:</label>
             <input id="lastDate" type="date">
 			
-			<input id="FileName" name="file-name" type="text" placeholder="Nome do arquivo a ser salvo">
+			<input id="FileNameFileName" name="file-name" type="text" placeholder="Nome do arquivo a ser salvo">
 			
             <button id="registerList" type="button">Listar Batidas</button>
         </section>

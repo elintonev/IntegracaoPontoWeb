@@ -107,7 +107,7 @@ let AllRegisterFiltered = async() => {
 				return testeFilter.entrada1 !== null || testeFilter.entrada2 !== null || testeFilter.entrada3 !== null || testeFilter.entrada4 !== null || testeFilter.entrada5 !== null || 
 				testeFilter.saida1 !== null || testeFilter.saida2 !== null || testeFilter.saida3 !== null || testeFilter.saida4 !== null || testeFilter.saida5 !== null
 			} )
-            downloadFiles(JSON.stringify(aux), `${fileName}`, 'PDF')
+            downloadFiles(JSON.stringify(aux), `${fileName}`, 'pdf')
         }
     }
     xhr.send();
