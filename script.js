@@ -7,6 +7,8 @@ let radio2 = document.getElementById('gerarResumido')
 let paragraph = document.getElementById('hiddenParagraph')
 var token = null
 
+
+//Função para gerar o Token de Acesso
 let AccessToken = async() => {
     const grant = 'grant_type=password'
     const client = 3
@@ -20,6 +22,7 @@ let AccessToken = async() => {
     accessToken.value = token
 }
 
+//Função que preenche a lista de Bancos de Dados disponíveis no usuário e senha preenchidos
 let BaseList = async() => {
     var url = `https://autenticador.secullum.com.br/ContasSecullumExterno/ListarBancos`;
 
@@ -53,6 +56,8 @@ let BaseList = async() => {
     xhr.send();
 }
 
+
+// Função para liberar as rotas no banco de dados selecionado
 let ReqLiberated = () => {
     let databaseID = document.getElementById('BaseList').value
     let newDataBaseId = databaseID.replaceAll("-", '')
@@ -74,6 +79,8 @@ let ReqLiberated = () => {
     xhr.send();
 }
 
+
+//Função que retorna a lista de batidas conforme o filtro selecionado, de acordo com o Radio button pressionado
 let AllRegisterFiltered = async() => {
     let firstDate = document.getElementById('firstDate').value
     let lastDate = document.getElementById('lastDate').value
@@ -117,6 +124,8 @@ let AllRegisterFiltered = async() => {
     xhr.send();
 }
 
+
+// Função que gera a lista de batidas com a Data, Hora e N° Folha formatados
 let arq = (arquivo) => {
     let result = ''
     var date;
@@ -136,6 +145,8 @@ let arq = (arquivo) => {
     return result
 }
 
+
+// Função que gera o arquivo nos Downloads do navegador
 function downloadFiles(data, file_name, file_type) {
     var file = new Blob([data], { type: file_type });
     if (window.navigator.msSaveOrOpenBlob) {
@@ -151,14 +162,6 @@ function downloadFiles(data, file_name, file_type) {
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
         }, 0);
-    }
-}
-
-let showParagraph = (p) => {
-    if (radio2.checked) {
-        p.setAttribute('style', 'display: none;')
-    } else {
-        p.setAttribute('style', 'display: block;')
     }
 }
 
