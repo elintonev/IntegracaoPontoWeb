@@ -5,13 +5,31 @@
     font-family: 'Oswald', sans-serif;
 }
 
+body {
+    width: 90%;
+    margin: 0 auto;
+}
+
 h1 {
     text-align: center;
-    margin: 2% auto;
     font-size: 75px;
 }
 
-.div-dados-token input,
+.div-dados-token input {
+    border: 4px solid #000;
+    border-radius: 10px;
+    padding-left: 5px;
+    font-size: 25px;
+    margin: 3% 25px;
+}
+
+#ButtonSoliciteToken {
+    display: block;
+    margin: 3% auto 3%;
+    width: 100%;
+    font-size: 25px;
+}
+
 #section-date input {
     border: 4px solid #000;
     border-radius: 10px;
@@ -23,19 +41,17 @@ h1 {
 .div-dados-token label,
 #labelToken,
 #section-date label {
-    font-size: 25px;
-    margin: 55px;
+    font-size: 35px;
+    margin: 55px 25px;
 }
 
 .div-dados-token input::placeholder {
     padding-left: 10px;
 }
 
-#ButtonSoliciteToken {
-    display: block;
-    margin: 35px auto;
-    width: 50%;
-    font-size: 25px;
+.div-baseList-selectDataBase {
+    width: 75%;
+    margin: 10px auto 35px;
 }
 
 #ButtonSoliciteBaseList,
@@ -62,4 +78,29 @@ h1 {
     cursor: pointer;
     background-image: linear-gradient(to right, #5AC9E4, #fff);
     border-radius: 10px;
+}
+
+#section-date #FileName {
+    width: 17%;
+    height: 10%;
+}
+
+#section-date #FileName::placeholder {
+    font-size: 25px;
+    text-align: center;
+}
+
+.div-registerlist-radios {
+    margin: 7% auto;
+}
+
+.div-registerlist-radios label {
+    font-size: 35px;
+    margin-left: 105px;
+}
+
+.div-registerlist-radios input {
+    width: 19px;
+    height: 19px;
+    margin-left: 5px;
 }

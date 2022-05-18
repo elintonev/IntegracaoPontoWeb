@@ -31,11 +31,12 @@
         </section>
 
         <section>
-            <button id="ButtonSoliciteBaseList" type="button">Listar Bancos de dados</button>
-            <select name="BaseList" id="BaseList">
+            <div class="div-baseList-selectDataBase">
+                <button id="ButtonSoliciteBaseList" type="button">Listar Bancos de dados</button>
+                <select name="BaseList" id="BaseList">
                 <option value="" disabled selected>Selecione o banco de dados</option>
             </select>
-
+            </div>
         </section>
 
         <section id="section-date">
@@ -43,13 +44,19 @@
             <input id="firstDate" type="date">
             <label for="firstDate">Data Fim:</label>
             <input id="lastDate" type="date">
-			
-			<input id="FileName" name="file-name" type="text" placeholder="Nome do arquivo a ser salvo">
-			
-            <button id="registerList" type="button">Listar Batidas</button>
+
+            <label for="file-name">Nome do arquivo: </label>
+            <input id="FileName" name="file-name" type="text" placeholder="Nome do arquivo a ser salvo">
         </section>
 
+        <div class="div-registerlist-radios">
+            <button id="registerList" type="button">Listar Batidas</button>
 
+            <label for="imprimirCompleto">Completo</label>
+            <input type="radio" name="imprimirCompleto" id="gerarCompleto" checked>
+            <label for="imprimirCompleto">Resumido</label>
+            <input type="radio" name="imprimirCompleto" id="gerarResumido">
+        </div>
     </main>
 </body>
 <script src=".\script.js"></script>
