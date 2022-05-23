@@ -5,11 +5,13 @@ let registerList = document.getElementById('registerList')
 let radio1 = document.getElementById('gerarCompleto')
 let radio2 = document.getElementById('gerarResumido')
 let paragraph = document.getElementById('hiddenParagraph')
-var token = null
+let contadorPreenchedorLista = 0
+let token = null
 
 
 //Função para gerar o Token de Acesso
 let AccessToken = async() => {
+    contadorPreenchedorLista = 0
     const grant = 'grant_type=password'
     const client = 3
     let userName = document.getElementById('UserName').value
@@ -23,7 +25,7 @@ let AccessToken = async() => {
 }
 
 //Função que preenche a lista de Bancos de Dados disponíveis no usuário e senha preenchidos
-let BaseList = async() => {
+let BaseList = () => {
     var url = `https://autenticador.secullum.com.br/ContasSecullumExterno/ListarBancos`;
 
     var xhr = new XMLHttpRequest();
@@ -35,20 +37,26 @@ let BaseList = async() => {
     xhr.onreadystatechange = () => {
         let select = document.getElementById('BaseList')
         if (xhr.readyState === 4) {
-            let teste = JSON.parse(xhr.responseText)
-            let aux = teste.map(list => {
+            let retornoJsonLista = JSON.parse(xhr.responseText)
+            let listaAuxiliar = retornoJsonLista.map(list => {
                 const newList = {
+                    clienteID: list.clienteId,
                     id: list.id,
                     nome: list.nome,
                     identificador: list.identificador
                 }
                 return newList;
+            }).filter(clienteFilter => {
+                return clienteFilter.clienteID == 3
             })
-            for (let i = 0; i < aux.length; i++) {
-                let opts = document.createElement('option')
-                opts.value = aux[i].identificador
-                opts.text = aux[i].nome
-                select.add(opts)
+            if (contadorPreenchedorLista === 0) {
+                for (let i = 0; i < listaAuxiliar.length; i++) {
+                    let opts = document.createElement('option')
+                    opts.value = listaAuxiliar[i].identificador
+                    opts.text = listaAuxiliar[i].nome
+                    select.add(opts)
+                }
+                contadorPreenchedorLista++
             }
         }
     };
@@ -81,7 +89,7 @@ let ReqLiberated = () => {
 
 
 //Função que retorna a lista de batidas conforme o filtro selecionado, de acordo com o Radio button pressionado
-let AllRegisterFiltered = async() => {
+let AllRegisterFiltered = () => {
     let firstDate = document.getElementById('firstDate').value
     let lastDate = document.getElementById('lastDate').value
     let fileName = document.getElementById('FileName').value
@@ -96,8 +104,8 @@ let AllRegisterFiltered = async() => {
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
-            let teste = JSON.parse(xhr.responseText)
-            let aux = teste.map(list => {
+            let listaBatidasCompleto = JSON.parse(xhr.responseText)
+            let listaBatidasFiltrado = listaBatidasCompleto.map(list => {
                 const newList = {
                     data: list.Data,
                     entrada1: list.Entrada1,
@@ -117,7 +125,7 @@ let AllRegisterFiltered = async() => {
                 return testeFilter.entrada1 !== null || testeFilter.entrada2 !== null || testeFilter.entrada3 !== null || testeFilter.entrada4 !== null || testeFilter.entrada5 !== null ||
                     testeFilter.saida1 !== null || testeFilter.saida2 !== null || testeFilter.saida3 !== null || testeFilter.saida4 !== null || testeFilter.saida5 !== null
             })
-            radio1.checked ? console.log(teste) : downloadFiles(arq(aux), `${fileName}`, 'txt')
+            radio1.checked ? console.log(listaBatidasCompleto) : downloadFiles(arq(listaBatidasFiltrado), `${fileName}`, 'txt')
 
         }
     }
