@@ -5,7 +5,9 @@ let registerList = document.getElementById('registerList')
 let radio1 = document.getElementById('gerarCompleto')
 let radio2 = document.getElementById('gerarResumido')
 let paragraph = document.getElementById('hiddenParagraph')
+let select = document.getElementById('BaseList')
 let contadorPreenchedorLista = 0
+let contadorLimparLista = 0
 let token = null
 
 
@@ -34,8 +36,14 @@ let BaseList = () => {
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Authorization", `Bearer ${token}`);
 
+	for (let i = 0; i <= contadorLimparLista; i++) {
+		let opts = document.createElement('option')
+            opts.value = contadorLimparLista
+            opts.text = contadorLimparLista
+            select.remove(opts)
+}
+	
     xhr.onreadystatechange = () => {
-        let select = document.getElementById('BaseList')
         if (xhr.readyState === 4) {
             let retornoJsonLista = JSON.parse(xhr.responseText)
             let listaAuxiliar = retornoJsonLista.map(list => {
@@ -51,10 +59,11 @@ let BaseList = () => {
             })
             if (contadorPreenchedorLista === 0) {
                 for (let i = 0; i < listaAuxiliar.length; i++) {
-                    let opts = document.createElement('option')
+					let opts = document.createElement('option')
                     opts.value = listaAuxiliar[i].identificador
                     opts.text = listaAuxiliar[i].nome
                     select.add(opts)
+					contadorLimparLista = listaAuxiliar.length
                 }
                 contadorPreenchedorLista++
             }
@@ -63,7 +72,6 @@ let BaseList = () => {
 
     xhr.send();
 }
-
 
 // Função para liberar as rotas no banco de dados selecionado
 let ReqLiberated = () => {
