@@ -34,8 +34,8 @@
             <div class="div-baseList-selectDataBase">
                 <button id="ButtonSoliciteBaseList" type="button">Listar Bancos de dados</button>
                 <select name="BaseList" id="BaseList">
-                <option value="" disabled selected>Selecione o banco de dados</option>
-            </select>
+                    <option value="" disabled selected>Selecione o banco de dados</option>
+                </select>
             </div>
         </section>
 
@@ -56,6 +56,25 @@
             <input type="radio" name="imprimirCompleto" id="gerarCompleto" checked>
             <label for="imprimirCompleto">Resumido</label>
             <input type="radio" name="imprimirCompleto" id="gerarResumido">
+
+            <span id="mostrarConsole"></span>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número Folha</th>
+                        <th>Data</th>
+                        <th>Entrada 1</th>
+                        <th>Saída 1</th>
+                        <th>Entrada 2</th>
+                        <th>Saída 2</th>
+                        <th>Entrada 3</th>
+                        <th>Saída 3</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-batidas">
+
+                </tbody>
+            </table>
         </div>
     </main>
 </body>

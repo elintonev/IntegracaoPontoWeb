@@ -15,12 +15,17 @@ h1 {
     font-size: 75px;
 }
 
+.div-dados-token{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .div-dados-token input {
     border: 4px solid #000;
     border-radius: 10px;
-    padding-left: 5px;
     font-size: 25px;
-    margin: 3% 25px;
+    height: 40px;
+    padding-left: 7.5px;
 }
 
 #ButtonSoliciteToken {
@@ -103,4 +108,31 @@ h1 {
     width: 19px;
     height: 19px;
     margin-left: 5px;
+}
+
+#mostrarConsole{
+    display: block;
+    text-align: center;
+    font-size: 4vh;
+    color: red;
+}
+
+
+table{
+	width: 100%;
+	margin-bottom : .5em;
+    table-layout: fixed;
+
+}
+
+td, th {
+	padding: .7em;
+	margin: 0;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+th{
+	font-weight: bold;
+	background-color: #EEE;
 }

@@ -6,6 +6,7 @@ let radio1 = document.getElementById('gerarCompleto')
 let radio2 = document.getElementById('gerarResumido')
 let paragraph = document.getElementById('hiddenParagraph')
 let select = document.getElementById('BaseList')
+let span = document.querySelector('#mostrarConsole')
 let contadorPreenchedorLista = 0
 let contadorLimparLista = 0
 let token = null
@@ -133,13 +134,50 @@ let AllRegisterFiltered = () => {
                 return testeFilter.entrada1 !== null || testeFilter.entrada2 !== null || testeFilter.entrada3 !== null || testeFilter.entrada4 !== null || testeFilter.entrada5 !== null ||
                     testeFilter.saida1 !== null || testeFilter.saida2 !== null || testeFilter.saida3 !== null || testeFilter.saida4 !== null || testeFilter.saida5 !== null
             })
-            radio1.checked ? console.log(listaBatidasCompleto) : downloadFiles(arq(listaBatidasFiltrado), `${fileName}`, 'txt')
 
+            if (radio1.checked){
+                span.textContent = "Aperte F12 e verifique a lista de batidas no Console"
+                listaBatidasFiltrado.forEach((batidas) => {
+                    adicionaBatidasNaTabela(batidas) 
+            })
+                console.log(listaBatidasCompleto)
+            }
+            else{
+                downloadFiles(arq(listaBatidasFiltrado), `${fileName}`, 'txt')
+            }
         }
     }
     xhr.send();
 }
 
+//Montar Tabela
+
+function montaTd(dado) {
+    let td = document.createElement("td");
+    td.textContent = dado;
+
+    return td;
+}
+
+function montaTr(batidas) {
+    let BatidasTr = document.createElement("tr");
+
+    BatidasTr.appendChild(montaTd(batidas.nfolha))
+    BatidasTr.appendChild(montaTd(batidas.data))
+    BatidasTr.appendChild(montaTd(batidas.entrada1));
+    BatidasTr.appendChild(montaTd(batidas.saida1));
+    BatidasTr.appendChild(montaTd(batidas.entrada2));
+    BatidasTr.appendChild(montaTd(batidas.saida2));
+    BatidasTr.appendChild(montaTd(batidas.entrada3));
+    BatidasTr.appendChild(montaTd(batidas.saida3));
+    return BatidasTr;
+}
+
+function adicionaBatidasNaTabela(batidas) {
+    let batidasTr = montaTr(batidas);
+    let table = document.querySelector('#tabela-batidas')
+    table.appendChild(batidasTr);
+}
 
 // Função que gera a lista de batidas com a Data, Hora e N° Folha formatados
 let arq = (arquivo) => {
@@ -160,6 +198,24 @@ let arq = (arquivo) => {
     }
     return result
 }
+
+// let dataFormatada = (arquivo) => {
+//     let result = [];
+//     var date;
+//     for (let obj of arquivo) {
+//         date = new Date(obj.data)
+//         dia = date.getDate()
+//         mes = date.getMonth() + 1
+//         if (dia < 10) {
+//             dia = '0' + dia
+//         }
+//         if (mes < 10) {
+//             mes = '0' + mes
+//         }
+//         result.push(`${dia}/${mes}/${date.getFullYear()}`)
+//     }
+//     return result
+// }
 
 
 // Função que gera o arquivo nos Downloads do navegador
